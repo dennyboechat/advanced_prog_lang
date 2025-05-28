@@ -119,7 +119,7 @@ func getEmployeeInput() []*Employee {
 
 		preferences := make(map[Day][]ShiftType)
 
-		fmt.Println("\nEnter shift preferences. Options: MORNING, AFTERNOON, EVENING (M/A/E or N for none)")
+		fmt.Println("\nEnter shift preferences. MORNING, AFTERNOON, EVENING (M/A/E or N for none)")
 
 		for _, day := range AllDays() {
 			for {
