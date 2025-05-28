@@ -9,13 +9,11 @@ public class ShiftScheduler {
     private List<Employee> employees;
     private Schedule schedule;
     private Scanner scanner;
-    private Random random;
 
     public ShiftScheduler() {
         employees = new ArrayList<>();
         schedule = new Schedule();
         scanner = new Scanner(System.in);
-        random = new Random();
     }
 
     public void run() {
@@ -24,7 +22,6 @@ public class ShiftScheduler {
         resolveConflicts();
         ensureMinimumStaffing();
         schedule.displaySchedule();
-        displayEmployeeWorkDays();
     }
 
     private void collectEmployeeData() {
@@ -141,8 +138,10 @@ public class ShiftScheduler {
 
     private Employee findAvailableEmployee(Day day) {
         List<Employee> availableEmployees = new ArrayList<>();
+        List<Employee> randomSelectedEmployees = new ArrayList<>(employees);
+        Collections.shuffle(randomSelectedEmployees);
 
-        for (Employee employee : employees) {
+        for (Employee employee : randomSelectedEmployees) {
             if (!employee.isWorkingOnDay(day) && !employee.hasMaxWorkDays()) {
                 availableEmployees.add(employee);
             }
@@ -157,22 +156,6 @@ public class ShiftScheduler {
 
         // Return the employee with the fewest work days
         return availableEmployees.get(0);
-    }
-
-    private void displayEmployeeWorkDays() {
-        System.out.println("\n=== EMPLOYEE WORK DAYS SUMMARY ===\n");
-
-        for (Employee employee : employees) {
-            System.out.print(employee.getName() + ": " + employee.getWorkDaysCount() + " days (");
-
-            StringJoiner joiner = new StringJoiner(", ");
-            for (Day day : employee.getWorkDays()) {
-                String shiftInfo = day.getDisplayName() + " " + employee.getAssignedShift(day).getDisplayName();
-                joiner.add(shiftInfo);
-            }
-
-            System.out.println(joiner + ")");
-        }
     }
 
     private int getValidIntInput(int min, int max) {
