@@ -81,20 +81,19 @@ public class Schedule {
             System.out.println("=== " + day.getDisplayName() + " ===");
             
             for (Shift shift : Shift.getAllShifts()) {
-                System.out.println(shift.getDisplayName() + " Shift:");
+                System.out.print(shift.getDisplayName() + ":");
                 
                 List<Employee> employees = schedule.get(day).get(shift);
                 if (employees.isEmpty()) {
-                    System.out.println("  No employees assigned");
+                    System.out.print("  No employees assigned");
                 } else {
                     for (Employee employee : employees) {
-                        String preferredMarker = (employee.getPreferredShift(day) == shift) ? " (preferred)" : "";
-                        System.out.println("  - " + employee.getName() + preferredMarker);
+                        System.out.print(" " + employee.getName() + ",");
                     }
                 }
                 System.out.println();
             }
-            System.out.println("---------------------------");
+            System.out.println("");
         }
     }
 }
