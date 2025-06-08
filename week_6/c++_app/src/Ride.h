@@ -12,21 +12,17 @@ protected:
     double baseFare;
 
 public:
-    // Constructor
     Ride(const std::string& id, const std::string& pickup, const std::string& dropoff, double dist);
     
-    // Virtual destructor for proper cleanup in derived classes
     virtual ~Ride() = default;
     
-    // Getters
     std::string getRideID() const;
     std::string getPickupLocation() const;
     std::string getDropoffLocation() const;
     double getDistance() const;
     
-    // Virtual methods to be overridden by derived classes
-    virtual double fare() const; // Calculate fare based on distance
-    virtual void rideDetails() const; // Display ride information
+    virtual double fare() const;
+    virtual void rideDetails() const;
 };
 
-#endif // RIDE_H
+#endif

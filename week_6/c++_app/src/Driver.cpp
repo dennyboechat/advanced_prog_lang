@@ -1,11 +1,9 @@
 #include "Driver.h"
 #include <iostream>
 
-// Constructor implementation
 Driver::Driver(const std::string& id, const std::string& driverName)
     : driverID(id), name(driverName), rating(5.0) {} // Default rating is 5.0
 
-// Getter implementations
 std::string Driver::getDriverID() const {
     return driverID;
 }
@@ -18,12 +16,10 @@ double Driver::getRating() const {
     return rating;
 }
 
-// Add a completed ride
 void Driver::addRide(Ride* ride) {
     assignedRides.push_back(ride);
 }
 
-// Update driver rating
 void Driver::updateRating(double newRating) {
     if (newRating >= 1.0 && newRating <= 5.0) {
         rating = newRating;
@@ -32,7 +28,6 @@ void Driver::updateRating(double newRating) {
     }
 }
 
-// Display driver information
 void Driver::getDriverInfo() const {
     std::cout << "=== DRIVER INFORMATION ===" << std::endl;
     std::cout << "Driver ID: " << driverID << std::endl;
@@ -42,7 +37,6 @@ void Driver::getDriverInfo() const {
     std::cout << "Total Earnings: $" << calculateTotalEarnings() << std::endl;
 }
 
-// Calculate total earnings from all rides
 double Driver::calculateTotalEarnings() const {
     double totalEarnings = 0.0;
     for (const auto& ride : assignedRides) {
@@ -51,7 +45,6 @@ double Driver::calculateTotalEarnings() const {
     return totalEarnings;
 }
 
-// Display all assigned rides
 void Driver::displayAssignedRides() const {
     if (assignedRides.empty()) {
         std::cout << "No rides assigned to this driver." << std::endl;

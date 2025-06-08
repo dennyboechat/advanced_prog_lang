@@ -1,11 +1,9 @@
 #include "Ride.h"
 #include <iostream>
 
-// Constructor implementation
 Ride::Ride(const std::string& id, const std::string& pickup, const std::string& dropoff, double dist)
     : rideID(id), pickupLocation(pickup), dropoffLocation(dropoff), distance(dist), baseFare(2.0) {}
 
-// Getter implementations
 std::string Ride::getRideID() const {
     return rideID;
 }
@@ -22,12 +20,10 @@ double Ride::getDistance() const {
     return distance;
 }
 
-// Base fare calculation
 double Ride::fare() const {
-    return baseFare + (distance * 1.5); // Base fare + $1.50 per mile
+    return baseFare + (distance * 1.5);
 }
 
-// Display ride details
 void Ride::rideDetails() const {
     std::cout << "Ride ID: " << rideID << std::endl;
     std::cout << "Pickup: " << pickupLocation << std::endl;

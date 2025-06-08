@@ -10,26 +10,22 @@ private:
     std::string driverID;
     std::string name;
     double rating;
-    std::vector<Ride*> assignedRides; // List of completed rides (using pointers to allow polymorphism)
+    std::vector<Ride*> assignedRides;
 
 public:
-    // Constructor
     Driver(const std::string& id, const std::string& driverName);
     
-    // Destructor - not responsible for deleting Ride pointers as they are managed elsewhere
     ~Driver() = default;
     
-    // Getters
     std::string getDriverID() const;
     std::string getName() const;
     double getRating() const;
     
-    // Methods
-    void addRide(Ride* ride); // Add a completed ride
-    void updateRating(double newRating); // Update driver rating
-    void getDriverInfo() const; // Display driver information
-    double calculateTotalEarnings() const; // Calculate total earnings from all rides
-    void displayAssignedRides() const; // Display all assigned rides
+    void addRide(Ride* ride);
+    void updateRating(double newRating);
+    void getDriverInfo() const;
+    double calculateTotalEarnings() const;
+    void displayAssignedRides() const;
 };
 
-#endif // DRIVER_H
+#endif
