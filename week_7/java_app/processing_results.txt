@@ -1,0 +1,33 @@
+17:36:38.534 - === Data Processing Results ===
+17:36:38.538 - Started at 17:36:38.537
+17:36:38.538 - ============================
+17:36:38.542 - Worker-2 started - Thread: pool-1-thread-2
+17:36:38.542 - Worker-3 started - Thread: pool-1-thread-3
+17:36:38.542 - Worker-4 started - Thread: pool-1-thread-4
+17:36:38.543 - Worker-1 started - Thread: pool-1-thread-1
+17:36:38.757 - Worker-1 completed task 4: Result: Data-4 transformed
+17:36:38.757 - Worker-3 completed task 2: Result: Data-2 transformed
+17:36:38.963 - Worker-1 completed task 5: Result: Data-5 transformed
+17:36:39.150 - Worker-4 completed task 3: Result: Data-3 transformed
+17:36:39.150 - Worker-2 completed task 1: Result: Data-1 transformed
+17:36:39.356 - Worker-2 completed task 9: Result: Data-9 transformed
+17:36:39.362 - Worker-3 completed task 6: Result: Data-6 transformed
+17:36:39.366 - Worker-1 completed task 7: Result: Data-7 transformed
+17:36:39.756 - Worker-4 completed task 8: Result: Data-8 transformed
+17:36:39.768 - Worker-1 completed task 12: Result: Data-12 transformed
+17:36:39.963 - Worker-2 completed task 10: Result: Data-10 transformed
+17:36:39.963 - Worker-3 completed task 11: Result: Data-11 transformed
+17:36:40.161 - Worker-4 completed task 13: Result: Data-13 transformed
+17:36:40.177 - Worker-1 ERROR on task 14: Simulated processing error
+17:36:40.369 - Worker-2 completed task 15: Result: Data-15 transformed
+17:36:40.370 - Worker-3 completed task 16: Result: Data-16 transformed
+17:36:40.575 - Worker-2 completed task 19: Result: Data-19 transformed
+17:36:40.576 - Worker-3 completed task 20: Result: Data-20 transformed
+17:36:40.578 - Worker-2 finished - Processed: 5 tasks, Errors: 0
+17:36:40.579 - Worker-3 finished - Processed: 5 tasks, Errors: 0
+17:36:40.583 - Worker-1 ERROR on task 18: Simulated processing error
+17:36:40.583 - Worker-1 finished - Processed: 4 tasks, Errors: 2
+17:36:40.767 - Worker-4 ERROR on task 17: Simulated processing error
+17:36:40.769 - Worker-4 finished - Processed: 3 tasks, Errors: 1
+17:36:40.770 - ============================
+17:36:40.770 - Processing completed at 17:36:40.770
