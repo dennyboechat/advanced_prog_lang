@@ -1,5 +1,3 @@
-package src;
-
 import java.util.concurrent.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -8,14 +6,12 @@ import java.util.concurrent.atomic.AtomicInteger;
  * DataProcessingSystem - Main class that sets up and coordinates the parallel data processing.
  */
 public class DataProcessingSystem {
-    // Configuration
     private final int numWorkers;
     private final BlockingQueue<Task> taskQueue;
     private final ResultManager resultManager;
     private final ExecutorService executorService;
     private final CountDownLatch completionLatch;
     
-    // Statistics
     private final AtomicInteger totalTasksSubmitted = new AtomicInteger(0);
     
     /**
@@ -48,7 +44,6 @@ public class DataProcessingSystem {
     public void startProcessing() {
         System.out.println("Starting " + numWorkers + " worker threads");
         
-        // Create and start worker threads
         for (int i = 0; i < numWorkers; i++) {
             String workerId = "Worker-" + (i + 1);
             Worker worker = new Worker(workerId, taskQueue, resultManager, completionLatch);
@@ -74,7 +69,6 @@ public class DataProcessingSystem {
         System.out.println("Waiting for workers to complete...");
         boolean completed = completionLatch.await(timeoutSeconds, TimeUnit.SECONDS);
         
-        // Shutdown the executor
         executorService.shutdown();
         try {
             if (!executorService.awaitTermination(5, TimeUnit.SECONDS)) {
@@ -86,7 +80,6 @@ public class DataProcessingSystem {
             Thread.currentThread().interrupt();
         }
         
-        // Finalize results
         resultManager.finalizeResults();
         
         return completed;
@@ -97,7 +90,6 @@ public class DataProcessingSystem {
      */
     public static void main(String[] args) {
         try {
-            // Configuration
             int numWorkers = 4;
             int numTasks = 20;
             String outputFile = "processing_results.txt";
@@ -105,10 +97,8 @@ public class DataProcessingSystem {
             System.out.println("=== Parallel Data Processing System ===");
             System.out.println("Workers: " + numWorkers + ", Tasks: " + numTasks);
             
-            // Create the data processing system
             DataProcessingSystem system = new DataProcessingSystem(numWorkers, outputFile);
             
-            // Generate and submit random tasks
             System.out.println("Generating and submitting " + numTasks + " tasks");
             Random random = new Random();
             for (int i = 1; i <= numTasks; i++) {
@@ -117,10 +107,8 @@ public class DataProcessingSystem {
                 system.submitTask(task);
             }
             
-            // Start processing
             system.startProcessing();
             
-            // Wait for completion
             boolean allCompleted = system.waitForCompletion(30);  // 30 second timeout
             
             if (!allCompleted) {

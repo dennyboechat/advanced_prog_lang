@@ -1,5 +1,3 @@
-package src;
-
 import java.io.*;
 import java.nio.file.*;
 import java.util.concurrent.locks.ReentrantLock;
@@ -14,7 +12,7 @@ public class ResultManager {
     private final String outputFilePath;
     private final ReentrantLock fileLock = new ReentrantLock();
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss.SSS");
-    
+
     /**
      * Creates a new ResultManager that writes to the specified file.
      * 
@@ -22,13 +20,11 @@ public class ResultManager {
      */
     public ResultManager(String outputFilePath) {
         this.outputFilePath = outputFilePath;
-        
-        // Initialize output file (create or truncate if exists)
+
         try {
             Files.write(Paths.get(outputFilePath), new byte[0],
                     StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-            
-            // Write header
+
             writeResult("=== Data Processing Results ===");
             writeResult("Started at " + dateFormat.format(new Date()));
             writeResult("============================");
@@ -36,7 +32,7 @@ public class ResultManager {
             System.err.println("Error initializing output file: " + e.getMessage());
         }
     }
-    
+
     /**
      * Writes a result to the output file with proper synchronization.
      * 
@@ -46,7 +42,6 @@ public class ResultManager {
         // Use a lock to ensure only one thread writes at a time
         fileLock.lock();
         try {
-            // Write to file with timestamp
             try (BufferedWriter writer = Files.newBufferedWriter(
                     Paths.get(outputFilePath), StandardOpenOption.APPEND)) {
                 writer.write(dateFormat.format(new Date()) + " - " + result);
@@ -58,7 +53,7 @@ public class ResultManager {
             fileLock.unlock();
         }
     }
-    
+
     /**
      * Completes the result file by writing a footer.
      */
@@ -66,7 +61,7 @@ public class ResultManager {
         writeResult("============================");
         writeResult("Processing completed at " + dateFormat.format(new Date()));
     }
-    
+
     /**
      * Gets the output file path.
      * 

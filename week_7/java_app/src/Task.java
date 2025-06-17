@@ -1,5 +1,3 @@
-package src;
-
 /**
  * Task - Represents a data item that needs to be processed.
  */
